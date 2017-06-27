@@ -10,7 +10,7 @@
         <sys_class_name>sys_atf_step</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-06-02 08:27:35</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>97b209a6db033200aab2d421cf96190f</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Submit a Form</sys_name>

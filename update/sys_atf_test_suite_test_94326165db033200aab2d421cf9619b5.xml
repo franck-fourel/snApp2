@@ -6,7 +6,7 @@
         <sys_class_name>sys_atf_test_suite_test</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-05-30 08:11:02</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>94326165db033200aab2d421cf9619b5</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>6cb1ad25db033200aab2d421cf961979</sys_name>

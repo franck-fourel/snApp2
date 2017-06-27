@@ -103,7 +103,7 @@ RemoteUpdateSet.prototype = {
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-03-13 14:08:24</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>8ee701e4db213200c4f5d360cf961930</sys_id>
         <sys_mod_count>2</sys_mod_count>
         <sys_name>RemoteUpdateSet</sys_name>

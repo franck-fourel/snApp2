@@ -8,7 +8,7 @@
         <sys_class_name>sys_ui_view</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-06-07 09:14:45</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>f88db284db5b32007206712ebf961954</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Connect</sys_name>
