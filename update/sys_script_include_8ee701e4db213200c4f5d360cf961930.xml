@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>false</active>
+        <api_name>x_74170_simpleapp.RemoteUpdateSet</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>RemoteUpdateSet</name>
+        <script><![CDATA[var RemoteUpdateSet = Class.create();
+RemoteUpdateSet.prototype = {
+    initialize: function() {
+		this.errors = 0;
+		this.warning = 0;
+		this.result = 'none';
+    },
+	
+    /* 
+		The completed updateSet are pulled from remote instance instance_name. 
+		The updateSet having its sys_id equal to remote_id is then automatically commited on the local instance.
+    */
+	get: function(instance_name, remote_id){
+		var gr = new GlideRecord('sys_update_set_source');
+		gr.get('url', instance_name);
+		if (gr.isValidRecord()) {
+			gr.get('active', true);
+		}
+
+		if (!gr.isValidRecord()) {
+			this.errors++;
+			this.result = 'Remote Source Does not Exist';
+			gs.error(this.result);
+			return;
+		}
+			
+		var myworker = new GlideUpdateSetWorker();
+		myworker.setUpdateSourceSysId(gr.sys_id); // ID of update server
+		myworker.setBackground(false);
+		myworker.start();
+
+		var remote_updateset = new GlideRecord('sys_remote_update_set');
+		if (!remote_updateset.get('remote_sys_id', remote_id)) {
+			this.errors++;
+			this.result = 'Update Set Not found';
+			gs.error(this.result);
+			return;
+		} else {
+			gs.info('ID: ' + remote_updateset.sys_id + ', Name:' + remote_updateset.name );
+			this.result = 'previewed';
+			// Mark as previewed - see PreviewAjax...
+			remote_updateset.state = "previewed";
+			remote_updateset.update();
+			// Well we don't nee a worker
+			var t = new UpdateSetPreviewer();
+			// Lets make this rerun safe
+			t.removePreviewRecords(remote_updateset.sys_id);
+			t.generatePreviewRecords(remote_updateset.sys_id);
+			// If all is fine commit
+			if (!GlidePreviewProblemHandler.hasUnresolvedProblems(remote_updateset.sys_id)) {
+				var lus = new GlideRecord('sys_update_set');
+				var worker = new GlideUpdateSetWorker();
+				var lsysid = worker.remoteUpdateSetCommit(lus, remote_updateset, remote_updateset.update_source.url);
+				var rsysid = remote_updateset.sys_id;
+
+				// Copy XML - done by hand in the ScriptInclude so we copy this
+				var xgr = new GlideRecord("sys_update_xml");
+				xgr.addQuery("remote_update_set", remote_updateset.sys_id);
+				xgr.query();
+				while (xgr.next()) {
+					var lxgr = new GlideRecord("sys_update_xml");
+					lxgr.initialize();
+					lxgr.name = xgr.name;
+					lxgr.payload = xgr.payload;
+					lxgr.action = xgr.action;
+					lxgr.type = xgr.type;
+					lxgr.target_name = xgr.target_name;
+					lxgr.view = xgr.view;
+					lxgr.update_domain = xgr.update_domain;
+					lxgr.table = xgr.table;
+					lxgr.category = xgr.category;
+					lxgr.application = xgr.application;
+					lxgr.update_set = lsysid;
+					if (lxgr.isValidField('replace_on_upgrade'))
+					lxgr.replace_on_upgrade = xgr.replace_on_upgrade;
+					lxgr.insert();
+				}
+
+				remote_updateset.update();
+
+				// Seems odd to send information back to the worker that it provided... but why not.
+				worker.setUpdateSetSysId(lsysid);
+				worker.setBackground(false);
+				worker.start();
+			}
+
+		}
+
+		
+	},
+
+    type: 'RemoteUpdateSet'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-03-13 14:08:24</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>8ee701e4db213200c4f5d360cf961930</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>RemoteUpdateSet</sys_name>
+        <sys_package display_value="SimpleApp" source="x_74170_simpleapp">57575865dbd43200c4f5d360cf9619f8</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SimpleApp">57575865dbd43200c4f5d360cf9619f8</sys_scope>
+        <sys_update_name>sys_script_include_8ee701e4db213200c4f5d360cf961930</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-03-15 15:40:14</sys_updated_on>
+    </sys_script_include>
+</record_update>

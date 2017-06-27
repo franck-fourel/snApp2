@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Open a new 'SimpleApp' form</description>
+        <display_name>Open a New Form</display_name>
+        <inputs/>
+        <order>1</order>
+        <step_config display_value="Open a New Form">05317cd10b10220050192f15d6673af8</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-30 08:10:33</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>9a02a165db033200aab2d421cf9619a3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Open a New Form</sys_name>
+        <sys_package display_value="SimpleApp" source="x_74170_simpleapp">57575865dbd43200c4f5d360cf9619f8</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SimpleApp">57575865dbd43200c4f5d360cf9619f8</sys_scope>
+        <sys_update_name>sys_atf_step_9a02a165db033200aab2d421cf9619a3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-30 08:10:33</sys_updated_on>
+        <table>x_74170_simpleapp_simpleapp</table>
+        <test display_value="SimpleAPp 1">bfe1ad25db033200aab2d421cf9619c4</test>
+        <timeout/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=9a02a165db033200aab2d421cf9619a3"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>9a02a165db033200aab2d421cf9619a3</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-30 08:10:33</sys_created_on>
+        <sys_id>ae12a165db033200aab2d421cf961922</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-30 08:10:33</sys_updated_on>
+        <value>x_74170_simpleapp_simpleapp</value>
+        <variable display_value="">bb84ed825320220002c6435723dc3400</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>9a02a165db033200aab2d421cf9619a3</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-30 08:10:33</sys_created_on>
+        <sys_id>ea12a165db033200aab2d421cf961921</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-30 08:10:33</sys_updated_on>
+        <value/>
+        <variable display_value="">27d4e1c25320220002c6435723dc3486</variable>
+    </sys_variable_value>
+</record_update>
